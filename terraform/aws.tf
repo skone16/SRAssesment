@@ -84,12 +84,6 @@ provisioner "local-exec" {
 
 
 
-
-
-
-
-
-
 output "public_ip" {
   value = aws_instance.srv1.public_ip
 }
