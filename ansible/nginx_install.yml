@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+
+   
+  tasks:
+    - name: Install epel repo
+      yum:
+        name: epel-release
+        state: present
+
+    - name: ensure nginx is at the latest version
+      yum: name=nginx
+
+    - name: Copy file with owner and permissions
+      copy:
+        src: ../Docker/index.html
+        dest: /usr/share/nginx/html/index.html
+        mode: '0755'
+
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
